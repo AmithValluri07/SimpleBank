@@ -77,6 +77,8 @@ The application provides a modern banking dashboard where users can securely log
 * Flask
 * Flask-CORS
 * Werkzeug
+* python-dotenv
+* MySQL Connector/Python
 
 ### Frontend
 
@@ -94,7 +96,41 @@ The application provides a modern banking dashboard where users can securely log
 * Password hashing
 * Session-based authentication
 * Protected API endpoints
+* Parameterized SQL queries
 * Input validation
+* Environment-based configuration
+
+---
+
+## 📸 Application Screenshots
+
+### 🔐 Login Page
+
+![Login Page](screenshots/login%20page.png)
+
+### 🏦 Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### 💳 Cards
+
+![Cards](screenshots/Cards.png)
+
+### 💰 Expenses
+
+![Expenses](screenshots/Expenses.png)
+
+### 📜 Transaction History
+
+![Transaction History](screenshots/history.png)
+
+### 📊 Financial Summary
+
+![Financial Summary](screenshots/Financial%20summary.png)
+
+### 👤 Profile
+
+![Profile](screenshots/profile.png)
 
 ---
 
@@ -107,7 +143,15 @@ SimpleBank/
 ├── requirements.txt
 ├── .gitignore
 ├── README.md
-├── .env
+│
+├── screenshots/
+│   ├── login page.png
+│   ├── dashboard.png
+│   ├── Cards.png
+│   ├── Expenses.png
+│   ├── history.png
+│   ├── Financial summary.png
+│   └── profile.png
 │
 ├── templates/
 │   ├── login.html
@@ -138,6 +182,8 @@ SimpleBank/
         ├── transfer.js
         └── settings.js
 ```
+
+> **Note:** The `.env` file is intentionally excluded from the repository because it contains private configuration such as database credentials.
 
 ---
 
@@ -246,7 +292,7 @@ python -m venv venv
 
 ### 4. Activate the virtual environment
 
-### Windows
+#### Windows
 
 ```bash
 venv\Scripts\activate
