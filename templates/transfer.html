@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SimpleBank - Transfer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/transfer.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="transfer-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">S</span>
+
+            <span>
+                Simple<span>Bank</span>
+            </span>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <a href="/dashboard"
+               class="nav-item">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="#"
+               class="nav-item">
+
+                <span>▣</span>
+
+                My Cards
+
+            </a>
+
+
+            <a href="/transfer"
+               class="nav-item active">
+
+                <span>↗</span>
+
+                Transfers
+
+            </a>
+
+
+            <a href="#"
+               class="nav-item">
+
+                <span>↔</span>
+
+                Transactions
+
+            </a>
+
+
+            <a href="#"
+               class="nav-item">
+
+                <span>◔</span>
+
+                Analytics
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#"
+               class="nav-item">
+
+                <span>⚙</span>
+
+                Settings
+
+            </a>
+
+
+            <a href="/logout"
+               class="nav-item logout">
+
+                <span>↪</span>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+             ================================================= -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome-small">
+                    PAYMENTS
+                </p>
+
+                <h1>
+                    Transfer Money
+                </h1>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+
+                    {{ user_name[0]|upper }}
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong>
+                        {{ user_name }}
+                    </strong>
+
+                    <small>
+                        {{ session["user_email"] }}
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             TRANSFER CONTENT
+             ================================================= -->
+
+        <section class="transfer-content">
+
+
+            <!-- =================================================
+                 LEFT SIDE
+                 ================================================= -->
+
+            <div class="transfer-main">
+
+
+                <!-- TRANSFER HEADING -->
+
+                <div class="transfer-heading">
+
+                    <div class="transfer-heading-icon">
+                        ↗
+                    </div>
+
+                    <div>
+
+                        <p>
+                            SEND MONEY
+                        </p>
+
+                        <h2>
+                            Make a Transfer
+                        </h2>
+
+                        <span>
+                            Send money securely to another
+                            SimpleBank customer.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TRANSFER CARD
+                     ================================================= -->
+
+                <div class="transfer-card">
+
+
+                    <!-- =================================================
+                         FROM ACCOUNT
+                         ================================================= -->
+
+                    <div class="transfer-field">
+
+                        <label>
+                            FROM
+                        </label>
+
+
+                        <div class="account-box">
+
+                            <div class="account-avatar">
+                                {{ user_name[0]|upper }}
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    {{ user_name }}
+                                </strong>
+
+                                <small>
+                                    •••• {{ account.account_number[-4:] }}
+                                </small>
+
+                            </div>
+
+
+                            <span class="verified">
+                                ✓
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TRANSFER ARROW -->
+
+                    <div class="transfer-arrow">
+                        ↓
+                    </div>
+
+
+
+                    <!-- =================================================
+                         RECIPIENT MOBILE NUMBER
+                         ================================================= -->
+
+                    <div class="transfer-field">
+
+                        <label>
+                            TO
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="recipientMobile"
+                            placeholder="Enter recipient mobile number"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="off"
+                        >
+
+
+                        <small id="recipientMessage"></small>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         AMOUNT
+                         ================================================= -->
+
+                    <div class="transfer-field">
+
+                        <label>
+                            AMOUNT
+                        </label>
+
+
+                        <div class="amount-box">
+
+                            <span>
+                                ₹
+                            </span>
+
+
+                            <input
+                                type="number"
+                                id="amount"
+                                placeholder="0.00"
+                                min="1"
+                                step="0.01"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NOTE
+                         ================================================= -->
+
+                    <div class="transfer-field">
+
+                        <label>
+                            NOTE
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="description"
+                            placeholder="What's this transfer for?"
+                            maxlength="255"
+                        >
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SEND BUTTON
+                         ================================================= -->
+
+                    <button
+                        type="button"
+                        id="transferButton"
+                        class="send-button">
+
+                        <span>
+                            Send Money
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- =================================================
+                         TRANSFER MESSAGE
+                         ================================================= -->
+
+                    <div
+                        id="transferMessage"
+                        class="transfer-message">
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RIGHT SIDE
+                 ================================================= -->
+
+            <aside class="transfer-summary">
+
+
+                <!-- =================================================
+                     AVAILABLE BALANCE
+                     ================================================= -->
+
+                <div class="summary-card balance-summary">
+
+                    <p>
+                        AVAILABLE BALANCE
+                    </p>
+
+
+                    <h2>
+                        ₹{{ "{:,.2f}".format(account.balance) }}
+                    </h2>
+
+
+                    <span>
+                        •••• {{ account.account_number[-4:] }}
+                    </span>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SECURITY
+                     ================================================= -->
+
+                <div class="summary-card security-card">
+
+                    <div class="security-icon">
+                        ✓
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Secure Transfer
+                        </strong>
+
+                        <p>
+                            Your transfer is protected
+                            by SimpleBank security.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TRANSFER TIP
+                     ================================================= -->
+
+                <div class="transfer-tip">
+
+                    <span>💡</span>
+
+                    <p>
+
+                        <strong>
+                            Tip
+                        </strong>
+
+                        <br>
+
+                        Double-check the recipient
+                        mobile number before sending
+                        money.
+
+                    </p>
+
+                </div>
+
+
+            </aside>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     TRANSFER JAVASCRIPT
+     ========================================================= -->
+
+<script src="{{ url_for('static', filename='js/transfer.js') }}">
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SimpleBank Settings</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/settings.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="settings-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                S
+            </span>
+
+            <span>
+                Simple<span>Bank</span>
+            </span>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navigation">
+
+
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-item">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="{{ url_for('cards') }}"
+               class="nav-item">
+
+                <span>▣</span>
+
+                My Cards
+
+            </a>
+
+
+            <a href="{{ url_for('transfer') }}"
+               class="nav-item">
+
+                <span>↗</span>
+
+                Transfers
+
+            </a>
+
+
+            <a href="{{ url_for('transactions') }}"
+               class="nav-item">
+
+                <span>↔</span>
+
+                Transactions
+
+            </a>
+
+
+            <a href="{{ url_for('analytics') }}"
+               class="nav-item">
+
+                <span>◔</span>
+
+                Analytics
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+
+            <a href="{{ url_for('settings') }}"
+               class="nav-item active">
+
+                <span>⚙</span>
+
+                Settings
+
+            </a>
+
+
+            <a href="{{ url_for('logout') }}"
+               class="nav-item logout">
+
+                <span>↪</span>
+
+                Logout
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div>
+
+                <p class="welcome-small">
+                    Account Management
+                </p>
+
+                <h1>
+                    Settings
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <button
+                    type="button"
+                    class="notification"
+                    id="notificationButton">
+
+                    ♢
+
+                    <span></span>
+
+                </button>
+
+
+                <div class="profile">
+
+
+                    <div class="profile-avatar">
+
+                        {{ user_name[0]|upper }}
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user_name }}
+                        </strong>
+
+                        <small>
+                            {{ user_email }}
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             SETTINGS INTRO
+        ================================================== -->
+
+        <section class="settings-intro">
+
+            <div>
+
+                <p class="section-label">
+                    SIMPLEBANK ACCOUNT
+                </p>
+
+                <h2>
+                    Manage your account
+                </h2>
+
+                <p>
+                    Update your personal information,
+                    security settings and preferences.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SETTINGS LAYOUT
+        ================================================== -->
+
+        <section class="settings-layout">
+
+
+            <!-- =================================================
+                 SETTINGS MENU
+            ================================================== -->
+
+            <div class="settings-menu">
+
+
+                <button
+                    type="button"
+                    class="settings-menu-item active"
+                    data-section="profileSection">
+
+                    <span class="menu-icon">
+                        👤
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Profile
+                        </strong>
+
+                        <small>
+                            Personal information
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="settings-menu-item"
+                    data-section="securitySection">
+
+                    <span class="menu-icon">
+                        🔐
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Security
+                        </strong>
+
+                        <small>
+                            Password & security
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="settings-menu-item"
+                    data-section="notificationSection">
+
+                    <span class="menu-icon">
+                        🔔
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Notifications
+                        </strong>
+
+                        <small>
+                            Notification preferences
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="settings-menu-item"
+                    data-section="appearanceSection">
+
+                    <span class="menu-icon">
+                        ◐
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Preferences
+                        </strong>
+
+                        <small>
+                            Application preferences
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SETTINGS CONTENT
+            ================================================== -->
+
+            <div class="settings-content">
+
+
+                <!-- =================================================
+                     PROFILE
+                ================================================== -->
+
+                <section
+                    class="settings-card settings-section active"
+                    id="profileSection">
+
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <p>
+                                PROFILE
+                            </p>
+
+                            <h2>
+                                Personal Information
+                            </h2>
+
+                            <span>
+                                Keep your account information up to date.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="message"
+                        id="profileMessage">
+                    </div>
+
+
+                    <form id="profileForm">
+
+
+                        <div class="form-grid">
+
+
+                            <!-- NAME -->
+
+                            <div class="form-group">
+
+                                <label for="settingsName">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="settingsName"
+                                    name="name"
+                                    value="{{ user_name }}"
+                                    placeholder="Enter your full name"
+                                    required>
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="form-group">
+
+                                <label for="settingsEmail">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="settingsEmail"
+                                    name="email"
+                                    value="{{ user_email }}"
+                                    placeholder="Enter your email"
+                                    required>
+
+                            </div>
+
+
+                            <!-- MOBILE -->
+
+                            <div class="form-group">
+
+                                <label for="settingsMobile">
+                                    Mobile Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="settingsMobile"
+                                    name="mobile_number"
+                                    value="{{ user_mobile or '' }}"
+                                    maxlength="10"
+                                    placeholder="Enter 10-digit mobile number">
+
+                            </div>
+
+
+                            <!-- ACCOUNT NUMBER -->
+
+                            <div class="form-group">
+
+                                <label>
+                                    Account Number
+                                </label>
+
+                                <input
+                                    type="text"
+                                    value="{{ account.account_number }}"
+                                    readonly>
+
+                                <small class="input-note">
+                                    Your bank account number cannot be changed.
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button
+                                type="submit"
+                                class="primary-button"
+                                id="saveProfileButton">
+
+                                Save Changes
+
+                            </button>
+
+                        </div>
+
+
+                    </form>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     SECURITY
+                ================================================== -->
+
+                <section
+                    class="settings-card settings-section"
+                    id="securitySection">
+
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            🔐
+                        </div>
+
+                        <div>
+
+                            <p>
+                                SECURITY
+                            </p>
+
+                            <h2>
+                                Change Password
+                            </h2>
+
+                            <span>
+                                Use a strong password to protect your account.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="message"
+                        id="passwordMessage">
+                    </div>
+
+
+                    <form id="passwordForm">
+
+
+                        <div class="form-group">
+
+                            <label for="currentPassword">
+                                Current Password
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="currentPassword"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="currentPassword">
+
+                                    ◉
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="newPassword">
+                                    New Password
+                                </label>
+
+                                <div class="password-wrapper">
+
+                                    <input
+                                        type="password"
+                                        id="newPassword"
+                                        minlength="6"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        class="password-toggle"
+                                        data-target="newPassword">
+
+                                        ◉
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="confirmNewPassword">
+                                    Confirm New Password
+                                </label>
+
+                                <div class="password-wrapper">
+
+                                    <input
+                                        type="password"
+                                        id="confirmNewPassword"
+                                        minlength="6"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        class="password-toggle"
+                                        data-target="confirmNewPassword">
+
+                                        ◉
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="password-requirements">
+
+                            <strong>
+                                Password requirements
+                            </strong>
+
+                            <ul>
+
+                                <li>
+                                    At least 6 characters
+                                </li>
+
+                                <li>
+                                    Use a combination of letters and numbers
+                                </li>
+
+                                <li>
+                                    Avoid easily guessed passwords
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button
+                                type="submit"
+                                class="primary-button"
+                                id="changePasswordButton">
+
+                                Change Password
+
+                            </button>
+
+                        </div>
+
+
+                    </form>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     NOTIFICATIONS
+                ================================================== -->
+
+                <section
+                    class="settings-card settings-section"
+                    id="notificationSection">
+
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            🔔
+                        </div>
+
+                        <div>
+
+                            <p>
+                                NOTIFICATIONS
+                            </p>
+
+                            <h2>
+                                Notification Preferences
+                            </h2>
+
+                            <span>
+                                Choose which notifications you want to receive.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="preference-list">
+
+
+                        <div class="preference-item">
+
+                            <div>
+
+                                <strong>
+                                    Transaction Alerts
+                                </strong>
+
+                                <p>
+                                    Get notified when money is sent or received.
+                                </p>
+
+                            </div>
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="transactionNotifications"
+                                    checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="preference-item">
+
+                            <div>
+
+                                <strong>
+                                    Security Alerts
+                                </strong>
+
+                                <p>
+                                    Receive alerts about important account activity.
+                                </p>
+
+                            </div>
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="securityNotifications"
+                                    checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="preference-item">
+
+                            <div>
+
+                                <strong>
+                                    Promotional Notifications
+                                </strong>
+
+                                <p>
+                                    Receive SimpleBank offers and announcements.
+                                </p>
+
+                            </div>
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="promotionNotifications">
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="save-preferences">
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            id="saveNotificationButton">
+
+                            Save Preferences
+
+                        </button>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     APPEARANCE
+                ================================================== -->
+
+                <section
+                    class="settings-card settings-section"
+                    id="appearanceSection">
+
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            ◐
+                        </div>
+
+                        <div>
+
+                            <p>
+                                PREFERENCES
+                            </p>
+
+                            <h2>
+                                Application Preferences
+                            </h2>
+
+                            <span>
+                                Customize how SimpleBank behaves.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="preference-list">
+
+
+                        <div class="preference-item">
+
+                            <div>
+
+                                <strong>
+                                    Compact Transactions
+                                </strong>
+
+                                <p>
+                                    Use a more compact transaction display.
+                                </p>
+
+                            </div>
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="compactTransactions">
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="preference-item">
+
+                            <div>
+
+                                <strong>
+                                    Remember Preferences
+                                </strong>
+
+                                <p>
+                                    Save your application preferences on this device.
+                                </p>
+
+                            </div>
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="rememberPreferences"
+                                    checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="security-notice">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Your account is protected
+                            </strong>
+
+                            <p>
+                                SimpleBank uses secure password hashing
+                                to protect your account credentials.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="{{ url_for('static', filename='js/settings.js') }}">
+</script>
+
+
+</body>
+
+</html>

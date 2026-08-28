@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SimpleBank - My Cards</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/cards.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="cards-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                S
+            </span>
+
+            <span>
+                Simple<span>Bank</span>
+            </span>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <a href="/dashboard"
+               class="nav-item">
+
+                <span>⌂</span>
+                Dashboard
+
+            </a>
+
+
+            <a href="/cards"
+               class="nav-item active">
+
+                <span>▣</span>
+                My Cards
+
+            </a>
+
+
+            <a href="/transfer"
+               class="nav-item">
+
+                <span>↗</span>
+                Transfers
+
+            </a>
+
+
+            <a href="/transactions"
+               class="nav-item">
+
+                <span>↔</span>
+                Transactions
+
+            </a>
+
+
+            <a href="/analytics"
+               class="nav-item">
+
+                <span>◔</span>
+                Analytics
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/settings"
+               class="nav-item">
+
+                <span>⚙</span>
+                Settings
+
+            </a>
+
+
+            <a href="/logout"
+               class="nav-item logout">
+
+                <span>↪</span>
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome-small">
+                    Banking
+                </p>
+
+                <h1>
+                    My Cards
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button
+                    class="notification"
+                    id="notificationButton"
+                    type="button">
+
+                    ♢
+
+                    <span></span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+
+                        {{ user_name[0]|upper }}
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user_name }}
+                        </strong>
+
+                        <small>
+                            {{ user_email }}
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PAGE INTRO
+        ================================================== -->
+
+        <section class="page-intro">
+
+            <div>
+
+                <p class="section-label">
+                    YOUR CARDS
+                </p>
+
+                <h2>
+                    Manage your cards
+                </h2>
+
+                <p>
+                    View and manage your SimpleBank debit cards.
+                </p>
+
+            </div>
+
+
+            <button
+                class="add-card-button"
+                id="addCardButton"
+                type="button">
+
+                <span>+</span>
+
+                Add New Card
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CARDS LAYOUT
+        ================================================== -->
+
+        <section class="cards-layout">
+
+
+            <!-- =================================================
+                 CARD SECTION
+            ================================================== -->
+
+            <div class="card-section">
+
+
+                {% if cards %}
+
+
+                <!-- =================================================
+                     CARD HEADING
+                ================================================== -->
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p>
+                            PRIMARY CARD
+                        </p>
+
+                        <h2>
+                            SimpleBank
+                            {{ cards[0].card_type }}
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        class="active-badge"
+                        id="cardStatusBadge">
+
+                        ● {{ cards[0].status }}
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BANK CARD
+                ================================================== -->
+
+                <div class="bank-card">
+
+                    <div class="card-glow"></div>
+
+
+                    <div class="card-top">
+
+                        <strong>
+                            SimpleBank
+                        </strong>
+
+
+                        <span>
+
+                            {{ cards[0].card_network }}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- CHIP -->
+
+                    <div class="chip">
+
+                        <span></span>
+
+                    </div>
+
+
+
+                    <!-- CONTACTLESS -->
+
+                    <div class="contactless">
+
+                        ))))
+
+                    </div>
+
+
+
+                    <!-- CARD NUMBER -->
+
+                    <div class="card-number">
+
+                        •••• &nbsp;
+                        •••• &nbsp;
+                        •••• &nbsp;
+
+                        {{ cards[0].card_number[-4:] }}
+
+                    </div>
+
+
+
+                    <!-- CARD BOTTOM -->
+
+                    <div class="card-bottom">
+
+
+                        <div>
+
+                            <small>
+                                VALID THRU
+                            </small>
+
+                            <strong>
+
+                                {{ cards[0].expiry_date }}
+
+                            </strong>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <small>
+                                CARD HOLDER
+                            </small>
+
+                            <strong>
+
+                                {{ cards[0].card_holder|upper }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CARD ACTIONS
+                ================================================== -->
+
+                <div class="card-actions">
+
+
+                    <button
+                        class="card-action"
+                        id="freezeCardButton"
+                        data-card-id="{{ cards[0].id }}"
+                        type="button">
+
+
+                        {% if cards[0].status|lower == "frozen" %}
+
+                            <span id="freezeIcon">
+                                🔓
+                            </span>
+
+                            <span id="freezeText">
+                                Unfreeze Card
+                            </span>
+
+                        {% else %}
+
+                            <span id="freezeIcon">
+                                ❄
+                            </span>
+
+                            <span id="freezeText">
+                                Freeze Card
+                            </span>
+
+                        {% endif %}
+
+
+                    </button>
+
+
+
+                    <button
+                        class="card-action"
+                        id="detailsButton"
+                        type="button">
+
+                        <span>
+                            ⓘ
+                        </span>
+
+                        Card Details
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CARD MESSAGE
+                ================================================== -->
+
+                <div
+                    id="cardMessage"
+                    class="card-message">
+                </div>
+
+
+                {% else %}
+
+
+                <!-- =================================================
+                     NO CARD
+                ================================================== -->
+
+                <div class="no-card-message">
+
+                    <div class="no-card-icon">
+                        ▣
+                    </div>
+
+                    <h2>
+                        No cards available
+                    </h2>
+
+                    <p>
+                        You don't have a SimpleBank card yet.
+                        Click "Add New Card" to create one.
+                    </p>
+
+                </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CARD INFORMATION
+            ================================================== -->
+
+            <aside class="card-info">
+
+
+                <!-- =================================================
+                     AVAILABLE BALANCE
+                ================================================== -->
+
+                <div class="info-card balance-card">
+
+                    <div class="info-icon">
+                        ₹
+                    </div>
+
+
+                    <div>
+
+                        <p>
+                            AVAILABLE BALANCE
+                        </p>
+
+                        <h2>
+
+                            ₹{{ "{:,.2f}".format(account.balance) }}
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CARD NUMBER
+                ================================================== -->
+
+                <div class="info-card">
+
+                    <div class="info-card-header">
+
+                        <span>
+                            CARD NUMBER
+                        </span>
+
+
+                        <span class="verified">
+
+                            ✓ Verified
+
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+
+                        •••• •••• ••••
+
+                        {% if cards %}
+
+                            {{ cards[0].card_number[-4:] }}
+
+                        {% else %}
+
+                            ----
+
+                        {% endif %}
+
+                    </h3>
+
+
+                    <small>
+
+                        Your full card number is securely hidden.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SECURITY
+                ================================================== -->
+
+                <div class="info-card security-card">
+
+                    <div class="security-icon">
+
+                        ✓
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Secure & Protected
+                        </h3>
+
+
+                        <p>
+
+                            Your card information is protected
+                            with SimpleBank security.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CARD STATUS
+                ================================================== -->
+
+                <div class="info-card settings-card">
+
+                    <div class="info-card-header">
+
+                        <div>
+
+                            <p>
+                                CARD STATUS
+                            </p>
+
+
+                            <strong id="cardStatusText">
+
+                                {% if cards %}
+
+                                    {{ cards[0].status }}
+
+                                {% else %}
+
+                                    No Card
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                        <span
+                            class="status-dot"
+                            id="statusDot">
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </aside>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CARD BENEFITS
+        ====================================================== -->
+
+        <section class="benefits-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p>
+                        CARD FEATURES
+                    </p>
+
+                    <h2>
+                        Your card benefits
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="benefits-grid">
+
+
+                <!-- =================================================
+                     BENEFIT 1
+                ================================================== -->
+
+                <div class="benefit-card">
+
+                    <div class="benefit-icon">
+                        ↗
+                    </div>
+
+                    <h3>
+                        Easy Payments
+                    </h3>
+
+                    <p>
+
+                        Make quick and convenient payments
+                        using your SimpleBank card.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BENEFIT 2
+                ================================================== -->
+
+                <div class="benefit-card">
+
+                    <div class="benefit-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        Secure Banking
+                    </h3>
+
+                    <p>
+
+                        Your transactions are protected with
+                        secure banking technology.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BENEFIT 3
+                ================================================== -->
+
+                <div class="benefit-card">
+
+                    <div class="benefit-icon">
+                        ◈
+                    </div>
+
+                    <h3>
+                        Track Spending
+                    </h3>
+
+                    <p>
+
+                        Monitor your card activity and
+                        understand your spending.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     CARD DETAILS MODAL
+========================================================= -->
+
+<div
+    id="cardDetailsModal"
+    class="card-modal">
+
+    <div class="modal-content">
+
+
+        <button
+            id="closeModalButton"
+            class="modal-close"
+            type="button">
+
+            ×
+
+        </button>
+
+
+
+        <p class="section-label">
+            CARD INFORMATION
+        </p>
+
+
+
+        <h2>
+            Debit Card Details
+        </h2>
+
+
+
+        {% if cards %}
+
+
+        <!-- CARD TYPE -->
+
+        <div class="modal-detail">
+
+            <span>
+                Card Type
+            </span>
+
+            <strong>
+
+                SimpleBank
+                {{ cards[0].card_type }}
+
+            </strong>
+
+        </div>
+
+
+
+        <!-- CARD NETWORK -->
+
+        <div class="modal-detail">
+
+            <span>
+                Card Network
+            </span>
+
+            <strong>
+
+                {{ cards[0].card_network }}
+
+            </strong>
+
+        </div>
+
+
+
+        <!-- CARD NUMBER -->
+
+        <div class="modal-detail">
+
+            <span>
+                Card Number
+            </span>
+
+            <strong>
+
+                •••• •••• ••••
+                {{ cards[0].card_number[-4:] }}
+
+            </strong>
+
+        </div>
+
+
+
+        <!-- CARD HOLDER -->
+
+        <div class="modal-detail">
+
+            <span>
+                Card Holder
+            </span>
+
+            <strong>
+
+                {{ cards[0].card_holder|upper }}
+
+            </strong>
+
+        </div>
+
+
+
+        <!-- EXPIRY -->
+
+        <div class="modal-detail">
+
+            <span>
+                Valid Thru
+            </span>
+
+            <strong>
+
+                {{ cards[0].expiry_date }}
+
+            </strong>
+
+        </div>
+
+
+
+        <!-- STATUS -->
+
+        <div class="modal-detail">
+
+            <span>
+                Status
+            </span>
+
+            <strong id="modalCardStatus">
+
+                {{ cards[0].status }}
+
+            </strong>
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="modal-detail">
+
+            <span>
+                Status
+            </span>
+
+            <strong id="modalCardStatus">
+                No Card
+            </strong>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ADD NEW CARD MODAL
+========================================================= -->
+
+<div
+    id="addCardModal"
+    class="card-modal">
+
+
+    <div class="modal-content">
+
+
+        <!-- CLOSE -->
+
+        <button
+            id="closeAddCardButton"
+            class="modal-close"
+            type="button">
+
+            ×
+
+        </button>
+
+
+
+        <!-- TITLE -->
+
+        <p class="section-label">
+            NEW CARD
+        </p>
+
+
+        <h2>
+            Add New Card
+        </h2>
+
+
+
+        <!-- FORM -->
+
+        <div class="modal-form">
+
+
+            <!-- CARD TYPE -->
+
+            <label for="newCardType">
+
+                Card Type
+
+            </label>
+
+
+            <select id="newCardType">
+
+                <option value="Debit Card">
+
+                    Debit Card
+
+                </option>
+
+
+                <option value="Virtual Card">
+
+                    Virtual Card
+
+                </option>
+
+            </select>
+
+
+
+            <!-- CARD NETWORK -->
+
+            <label for="newCardNetwork">
+
+                Card Network
+
+            </label>
+
+
+            <select id="newCardNetwork">
+
+                <option value="VISA">
+
+                    VISA
+
+                </option>
+
+
+                <option value="Mastercard">
+
+                    Mastercard
+
+                </option>
+
+            </select>
+
+
+
+            <!-- CARD HOLDER -->
+
+            <label for="newCardHolder">
+
+                Card Holder
+
+            </label>
+
+
+            <input
+                type="text"
+                id="newCardHolder"
+                value="{{ user_name|upper }}"
+                placeholder="Card holder name"
+                maxlength="100">
+
+
+
+            <!-- CREATE -->
+
+            <button
+                id="createCardButton"
+                class="add-card-button"
+                type="button">
+
+                Create Card
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
+
+
+</body>
+
+</html>

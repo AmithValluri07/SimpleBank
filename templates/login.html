@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SimpleBank</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="bank-app">
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="hero">
+
+        
+
+        <div class="bank-logo">
+            <div class="logo-box">S</div>
+            <span>SimpleBank</span>
+        </div>
+
+        <div class="hero-content" id="heroContent">
+
+            <h1>Welcome Back</h1>
+
+            <p>
+                Sign in to continue to your account
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <section class="content-card">
+
+        <!-- Login / Signup switch -->
+
+        <div class="auth-tabs">
+
+            <button
+                id="loginTab"
+                class="auth-tab active"
+                type="button">
+
+                Log In
+
+            </button>
+
+            <button
+                id="signupTab"
+                class="auth-tab"
+                type="button">
+
+                Sign Up
+
+            </button>
+
+        </div>
+
+
+        <!-- ================= LOGIN ================= -->
+
+        <div id="loginSection" class="auth-section active">
+
+            <form id="loginForm">
+
+                <!-- Email -->
+
+                <div class="input-container">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="input-container">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="eye-button">
+
+                            ◉
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Remember / Forgot -->
+
+                <div class="login-options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe">
+
+                        <span class="custom-checkbox"></span>
+
+                        Remember me
+
+                    </label>
+
+                    <a href="#" id="forgotPassword">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <!-- Login button -->
+
+                <button
+                    type="submit"
+                    class="swipe-button"
+                    id="loginButton">
+
+                    <span class="swipe-circle">
+                        »»
+                    </span>
+
+                    <span>
+                        Swipe to Login
+                    </span>
+
+                </button>
+
+            </form>
+
+
+            <!-- Message -->
+
+            <div
+                id="loginMessage"
+                class="message">
+            </div>
+
+
+            <!-- Divider -->
+
+            <div class="divider">
+
+                <span></span>
+
+                <p>Or continue with</p>
+
+                <span></span>
+
+            </div>
+
+
+            <!-- Social login -->
+
+            <div class="social-buttons">
+
+                <button
+    type="button"
+    class="social-button">
+
+    <svg class="google-logo"
+         viewBox="0 0 24 24"
+         aria-hidden="true">
+
+        <path fill="#4285F4"
+              d="M21.35 12.2c0-.72-.06-1.42-.18-2.08H12v3.94h5.24a4.48 4.48 0 0 1-1.94 2.94v2.44h3.14c1.84-1.7 2.91-4.2 2.91-7.24z"/>
+
+        <path fill="#34A853"
+              d="M12 21.7c2.63 0 4.84-.87 6.45-2.36l-3.14-2.44c-.87.58-1.98.92-3.31.92-2.54 0-4.69-1.72-5.46-4.03H3.3v2.52A9.74 9.74 0 0 0 12 21.7z"/>
+
+        <path fill="#FBBC05"
+              d="M6.54 13.79a5.86 5.86 0 0 1 0-3.58V7.69H3.3a9.74 9.74 0 0 0 0 8.62l3.24-2.52z"/>
+
+        <path fill="#EA4335"
+              d="M12 6.18c1.43 0 2.71.49 3.72 1.45l2.79-2.79C16.84 3.26 14.63 2.3 12 2.3a9.74 9.74 0 0 0-8.7 5.39l3.24 2.52C7.31 7.9 9.46 6.18 12 6.18z"/>
+
+    </svg>
+
+    Google
+
+</button>
+
+                <button
+                    type="button"
+                    class="social-button">
+
+                    <svg class="apple-logo"
+     viewBox="0 0 24 24"
+     aria-hidden="true">
+
+    <path
+        fill="currentColor"
+        d="M18.71 19.5c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.07-.35C4.5 15.37 5.15 7.16 10.6 6.86c1.32.07 2.24.73 3.03.79 1.18-.24 2.31-.91 3.56-.84 1.5.12 2.63.71 3.38 1.8-3.1 1.86-2.37 5.95.48 7.09-.57 1.5-1.31 2.99-2.34 3.8zM13.52 6.85c-.15-2.23 1.67-4.07 3.74-4.31.29 2.58-2.34 4.5-3.74 4.31z"
+    />
+
+</svg>
+
+                    Apple
+
+                </button>
+
+            </div>
+
+
+            <!-- Register -->
+
+            <p class="bottom-text">
+
+                Don't have an account?
+
+                <button
+                    type="button"
+                    id="createAccount">
+
+                    Create an account
+
+                </button>
+
+            </p>
+
+        </div>
+
+
+        <!-- ================= SIGN UP ================= -->
+
+        <div id="signupSection" class="auth-section">
+
+            <form id="signupForm">
+
+                <!-- Full name -->
+
+                <div class="input-container">
+
+                    <label for="signupName">
+                        Full Name
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            ♙
+                        </span>
+
+                        <input
+                            type="text"
+                            id="signupName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="input-container">
+
+                    <label for="signupEmail">
+                        Email
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            type="email"
+                            id="signupEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="input-container">
+
+                    <label for="signupPassword">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            placeholder="Create your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="toggleSignupPassword"
+                            class="eye-button">
+
+                            ◉
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="input-container">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm your password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Signup button -->
+
+                <button
+                    type="submit"
+                    class="swipe-button"
+                    id="signupButton">
+
+                    <span class="swipe-circle">
+                        »»
+                    </span>
+
+                    <span>
+                        Swipe to Sign Up
+                    </span>
+
+                </button>
+
+            </form>
+
+
+            <div
+                id="signupMessage"
+                class="message">
+            </div>
+
+
+            <!-- Divider -->
+
+            <div class="divider">
+
+                <span></span>
+
+                <p>Or continue with</p>
+
+                <span></span>
+
+            </div>
+
+
+            <!-- Social buttons -->
+
+            <div class="social-buttons">
+
+                <button
+                    type="button"
+                    class="social-button">
+
+                    <span class="google-icon">G</span>
+
+                    Google
+
+                </button>
+
+                <button
+                    type="button"
+                    class="social-button">
+
+                    <span class="apple-icon">●</span>
+
+                    Apple
+
+                </button>
+
+            </div>
+
+
+            <p class="bottom-text">
+
+                Already have an account?
+
+                <button
+                    type="button"
+                    id="goToLogin">
+
+                    Log in
+
+                </button>
+
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

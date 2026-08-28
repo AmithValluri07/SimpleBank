@@ -1,0 +1,1282 @@
+/* =========================================
+   SIMPLEBANK DASHBOARD
+   Black + Orange + White Theme
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: #0b0b0b;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   DASHBOARD LAYOUT
+========================================= */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: #0b0b0b;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #111111;
+    border-right: 1px solid #242424;
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 12px;
+    margin-bottom: 55px;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo > span:last-child span {
+    color: #ff6b00;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: #ff6b00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+/* NAVIGATION */
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.nav-item {
+    height: 48px;
+    padding: 0 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #8e8e8e;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.25s ease;
+}
+
+.nav-item span {
+    width: 22px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.nav-item:hover {
+    color: #ffffff;
+    background: #1b1b1b;
+}
+
+.nav-item.active {
+    background: #ff6b00;
+    color: #ffffff;
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.20);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.logout:hover {
+    color: #ff6b00;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 32px 40px 50px;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.welcome-small {
+    color: #777777;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.topbar h1 {
+    font-size: 26px;
+    font-weight: 650;
+    letter-spacing: -0.6px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+
+/* NOTIFICATION */
+
+.notification {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    border: 1px solid #282828;
+    background: #151515;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+}
+
+.notification span {
+    width: 7px;
+    height: 7px;
+    background: #ff6b00;
+    border-radius: 50%;
+    position: absolute;
+    top: 9px;
+    right: 9px;
+}
+
+
+/* PROFILE */
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.profile-avatar {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: #ff6b00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.profile-info strong {
+    font-size: 13px;
+}
+
+.profile-info small {
+    color: #777777;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   BALANCE
+========================================= */
+
+.balance-section {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.balance-card {
+    flex: 1;
+    min-height: 190px;
+    border-radius: 22px;
+    padding: 28px 30px;
+    background: linear-gradient(
+        135deg,
+        #ff6b00,
+        #d94f00
+    );
+    box-shadow: 0 18px 45px rgba(255, 107, 0, 0.16);
+    position: relative;
+    overflow: hidden;
+}
+
+.balance-card::after {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    right: -70px;
+    top: -100px;
+}
+
+.balance-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.balance-top p {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 9px;
+}
+
+.balance-top h2 {
+    font-size: 34px;
+    letter-spacing: -1px;
+}
+
+.balance-menu {
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+.balance-bottom {
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.balance-bottom div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.balance-bottom span {
+    font-size: 10px;
+    opacity: 0.65;
+    text-transform: uppercase;
+}
+
+.balance-bottom strong {
+    font-size: 13px;
+}
+
+
+/* ADD MONEY */
+
+.add-money {
+    width: 155px;
+    border: 1px solid #282828;
+    border-radius: 20px;
+    background: #151515;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.add-money span {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff6b00;
+    margin-right: 7px;
+    font-size: 19px;
+}
+
+.add-money:hover {
+    border-color: #ff6b00;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: #141414;
+    border: 1px solid #242424;
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.25s;
+}
+
+.stat-card:hover {
+    border-color: #353535;
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.income-icon {
+    background: rgba(255, 107, 0, 0.12);
+    color: #ff6b00;
+}
+
+.expense-icon {
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+.savings-icon {
+    background: rgba(255, 107, 0, 0.12);
+    color: #ff6b00;
+}
+
+.stat-card p {
+    color: #777777;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.stat-card h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.stat-card small {
+    font-size: 10px;
+}
+
+.positive {
+    color: #ff6b00;
+}
+
+.negative {
+    color: #999999;
+}
+
+
+/* =========================================
+   DASHBOARD GRID
+========================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.panel,
+.transactions-panel {
+    background: #141414;
+    border: 1px solid #242424;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+
+/* =========================================
+   PANEL HEADER
+========================================= */
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-label {
+    color: #777777;
+    font-size: 11px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.panel-header h2 {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.panel-header select {
+    background: #1d1d1d;
+    border: 1px solid #292929;
+    color: #bbbbbb;
+    padding: 8px 11px;
+    border-radius: 9px;
+    outline: none;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   CHART
+========================================= */
+
+.chart {
+    height: 190px;
+    margin-top: 25px;
+    position: relative;
+    border-bottom: 1px solid #292929;
+}
+
+.chart::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 45px,
+        #202020 46px
+    );
+}
+
+.chart-bars {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 0 10px;
+}
+
+.chart-bars span {
+    width: 9%;
+    border-radius: 7px 7px 0 0;
+    background: #ff6b00;
+    opacity: 0.85;
+    transition: 0.25s;
+}
+
+.chart-bars span:hover {
+    opacity: 1;
+    transform: scaleY(1.03);
+}
+
+.chart-line {
+    display: none;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 11px;
+    color: #666666;
+    font-size: 10px;
+}
+
+
+/* =========================================
+   BANK CARD
+========================================= */
+
+.bank-card-panel {
+    overflow: hidden;
+}
+
+.card-status {
+    background: rgba(255, 107, 0, 0.12);
+    color: #ff6b00;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+}
+
+.bank-card {
+    height: 190px;
+    margin-top: 25px;
+    border-radius: 19px;
+    padding: 22px;
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(255, 107, 0, 0.40),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #242424,
+            #0d0d0d
+        );
+    border: 1px solid #343434;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.card-top span {
+    font-style: italic;
+    font-weight: 700;
+    color: #ff6b00;
+}
+
+.chip {
+    width: 37px;
+    height: 27px;
+    border-radius: 6px;
+    background: linear-gradient(
+        135deg,
+        #d7d7d7,
+        #777777
+    );
+    margin-top: 3px;
+}
+
+.card-number {
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #eeeeee;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-bottom div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card-bottom small {
+    color: #777777;
+    font-size: 7px;
+}
+
+.card-bottom strong {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   TRANSACTIONS
+========================================= */
+
+.transactions-panel {
+    margin-bottom: 20px;
+}
+
+.transactions-panel .panel-header {
+    margin-bottom: 18px;
+}
+
+.transactions-panel .panel-header a {
+    color: #ff6b00;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px;
+    border-top: 1px solid #222222;
+}
+
+.transaction-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.amazon {
+    background: #242424;
+}
+
+.salary {
+    background: rgba(255, 107, 0, 0.12);
+    color: #ff6b00;
+}
+
+.food {
+    background: #242424;
+}
+
+.transaction-left div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.transaction-left strong {
+    font-size: 12px;
+}
+
+.transaction-left small {
+    color: #666666;
+    font-size: 10px;
+}
+
+.amount {
+    font-size: 12px;
+}
+
+.amount.expense {
+    color: #ffffff;
+}
+
+.amount.income {
+    color: #ff6b00;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+        padding: 25px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 75px;
+        padding: 25px 10px;
+    }
+
+    .logo {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .logo > span:last-child {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .nav-item {
+        font-size: 0;
+    }
+
+    .nav-item span {
+        font-size: 19px;
+    }
+
+    .main-content {
+        margin-left: 75px;
+        width: calc(100% - 75px);
+        padding: 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .balance-section {
+        flex-direction: column;
+    }
+
+    .add-money {
+        width: 100%;
+        height: 55px;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .topbar h1 {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+
+    .notification {
+        display: none;
+    }
+
+    .balance-card {
+        min-height: 175px;
+        padding: 22px;
+    }
+
+    .balance-top h2 {
+        font-size: 27px;
+    }
+
+    .panel,
+    .transactions-panel {
+        padding: 18px;
+    }
+
+    .bank-card {
+        height: 175px;
+    }
+}
+/* =========================================================
+   REAL SPENDING CHART
+========================================================= */
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   ADD MONEY MODAL
+========================================================= */
+
+.add-money-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-money-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(5px);
+}
+
+
+.add-money-box {
+    position: relative;
+    z-index: 2;
+    width: 430px;
+    max-width: calc(100% - 40px);
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+    animation: addMoneyPopup 0.25s ease;
+}
+
+
+@keyframes addMoneyPopup {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+.close-add-money {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: #f5f5f5;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+.add-money-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+
+.add-money-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff7a00;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+.add-money-header h2 {
+    margin: 0;
+}
+
+
+.add-money-header p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+
+.add-money-box label {
+    display: block;
+    margin: 16px 0 8px;
+    font-weight: 600;
+}
+
+
+.amount-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+.amount-input span {
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.amount-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-size: 18px;
+}
+
+
+#addMoneyDescription {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    outline: none;
+}
+
+
+.quick-amounts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+}
+
+
+.quick-amounts button {
+    padding: 11px;
+    border: 1px solid #eee;
+    background: #fafafa;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+.quick-amounts button:hover {
+    background: #fff1e5;
+    border-color: #ff7a00;
+}
+
+
+.confirm-add-money {
+    width: 100%;
+    margin-top: 22px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #ff7a00;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+.confirm-add-money:hover {
+    background: #e96d00;
+}
+
+
+.confirm-add-money:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSIVE MODAL
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .add-money-box {
+        padding: 22px;
+        border-radius: 18px;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+
+}
+/* =========================================================
+   SPENDING OVERVIEW CHART FIX
+========================================================= */
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+#spendingChart {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+/* =========================================================
+   FINANCIAL OVERVIEW - SAMPLE BAR CHART
+========================================================= */
+
+.sample-chart {
+    display: flex;
+    width: 100%;
+    height: 280px;
+    margin-top: 10px;
+}
+
+
+/* Y AXIS */
+
+.chart-y-axis {
+    width: 55px;
+    height: 230px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 5px 10px 0 0;
+
+    box-sizing: border-box;
+
+    text-align: right;
+
+    font-size: 11px;
+    color: #8b8b8b;
+}
+
+
+/* CHART AREA */
+
+.chart-area {
+    position: relative;
+
+    flex: 1;
+
+    height: 230px;
+
+    border-bottom: 1px solid #e5e5e5;
+
+    overflow: hidden;
+}
+
+
+/* GRID */
+
+.chart-grid-line {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    height: 1px;
+
+    background: #eeeeee;
+}
+
+.chart-grid-line:nth-child(1) {
+    top: 0;
+}
+
+.chart-grid-line:nth-child(2) {
+    top: 20%;
+}
+
+.chart-grid-line:nth-child(3) {
+    top: 40%;
+}
+
+.chart-grid-line:nth-child(4) {
+    top: 60%;
+}
+
+.chart-grid-line:nth-child(5) {
+    top: 80%;
+}
+
+
+/* BAR GROUPS */
+
+.bar-groups {
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-around;
+
+    z-index: 2;
+}
+
+
+/* INDIVIDUAL GROUP */
+
+.bar-group {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    min-width: 45px;
+
+    gap: 8px;
+}
+
+
+/* BARS */
+
+.bars {
+    height: 205px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 6px;
+}
+
+
+/* BAR */
+
+.bar {
+    width: 14px;
+
+    min-height: 5px;
+
+    border-radius: 5px 5px 0 0;
+
+    transition: transform 0.2s ease,
+                opacity 0.2s ease;
+}
+
+.bar:hover {
+    transform: translateY(-4px);
+
+    opacity: 0.8;
+}
+
+
+/* INCOME */
+
+.income-bar {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+}
+
+
+/* EXPENSE */
+
+.expense-bar {
+    background: #f28c28;
+}
+
+
+/* MONTH LABEL */
+
+.bar-group > span {
+    font-size: 12px;
+
+    color: #777;
+
+    font-weight: 500;
+}
+
+
+/* LEGEND */
+
+.chart-legend {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 28px;
+
+    margin-top: 12px;
+}
+
+
+.legend-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 12px;
+
+    color: #666;
+}
+
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+
+.income-dot {
+     background: #ffffff;
+    border: 1px solid #dcdcdc;
+}
+
+
+.expense-dot {
+    background: #f28c28;
+}

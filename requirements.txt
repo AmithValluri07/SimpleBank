@@ -1,0 +1,5 @@
+Flask==3.1.3                      # Creates our backend/web server
+Flask-CORS==6.0.5                 # Allows frontend ↔ backend communication
+mysql-connector-python==26.7.0    # Connects Flask to MySQL
+Werkzeug==3.1.8                   # Password hashing/security utilities
+python-dotenv==1.2.3              #load sensitive configuration values from a .env file into your Python application.

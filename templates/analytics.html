@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SimpleBank Analytics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/analytics.css') }}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                S
+            </span>
+
+            <span>
+                Simple<span>Bank</span>
+            </span>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navigation">
+
+
+            <!-- DASHBOARD -->
+
+            <a href="/dashboard"
+               class="nav-item">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <!-- MY CARDS -->
+
+            <a href="/cards"
+               class="nav-item">
+
+                <span>▣</span>
+
+                My Cards
+
+            </a>
+
+
+            <!-- TRANSFERS -->
+
+            <a href="/transfer"
+               class="nav-item">
+
+                <span>↗</span>
+
+                Transfers
+
+            </a>
+
+
+            <!-- TRANSACTIONS -->
+
+            <a href="/transactions"
+               class="nav-item">
+
+                <span>↔</span>
+
+                Transactions
+
+            </a>
+
+
+            <!-- ANALYTICS -->
+
+            <a href="/analytics"
+               class="nav-item active">
+
+                <span>◔</span>
+
+                Analytics
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+
+            <!-- SETTINGS -->
+
+            <a href="/settings"
+               class="nav-item">
+
+                <span>⚙</span>
+
+                Settings
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <a href="/logout"
+               class="nav-item logout">
+
+                <span>↪</span>
+
+                Logout
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div>
+
+                <p class="welcome-small">
+                    Financial Overview
+                </p>
+
+                <h1>
+                    Analytics 📊
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <!-- NOTIFICATION -->
+
+                <button
+                    class="notification"
+                    id="notificationButton"
+                    type="button">
+
+                    ♢
+
+                    <span></span>
+
+                </button>
+
+
+                <!-- PROFILE -->
+
+                <div class="profile">
+
+
+                    <div class="profile-avatar">
+
+                        {{ user_name[0]|upper }}
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user_name }}
+                        </strong>
+
+                        <small>
+                            {{ user_email }}
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+        <!-- =================================================
+             ANALYTICS INTRO
+        ================================================== -->
+
+        <section class="analytics-intro">
+
+
+            <div>
+
+                <p class="panel-label">
+                    Financial Insights
+                </p>
+
+                <h2>
+                    Understand your money
+                </h2>
+
+                <p>
+                    Track your income, expenses and savings
+                    using your latest account activity.
+                </p>
+
+            </div>
+
+
+            <div class="account-badge">
+
+                <span>
+                    Account
+                </span>
+
+                <strong>
+                    •••• {{ account.account_number[-4:] }}
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats">
+
+
+            <!-- INCOME -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon income-icon">
+                    ↗
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Total Income
+                    </p>
+
+                    <h3>
+                        ₹{{ "{:,.2f}".format(income or 0) }}
+                    </h3>
+
+                    <small class="positive">
+                        Money received
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- EXPENSES -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon expense-icon">
+                    ↘
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Total Expenses
+                    </p>
+
+                    <h3>
+                        ₹{{ "{:,.2f}".format(expenses or 0) }}
+                    </h3>
+
+                    <small class="negative">
+                        Money spent
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SAVINGS -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon savings-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Net Savings
+                    </p>
+
+                    <h3>
+                        ₹{{ "{:,.2f}".format(savings or 0) }}
+                    </h3>
+
+
+                    {% if savings >= 0 %}
+
+                        <small class="positive">
+                            Positive balance flow
+                        </small>
+
+                    {% else %}
+
+                        <small class="negative">
+                            Expenses exceed income
+                        </small>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             CHART SECTION
+        ================================================== -->
+
+        <section class="analytics-grid">
+
+
+            <!-- =================================================
+                 INCOME VS EXPENSES
+            ================================================== -->
+
+            <div class="panel chart-panel">
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <p class="panel-label">
+                            Financial Overview
+                        </p>
+
+                        <h2>
+                            Income vs Expenses
+                        </h2>
+
+                    </div>
+
+
+                    <!-- PERIOD FILTER -->
+
+                    <select
+                        class="period-selector"
+                        id="periodSelector"
+                        onchange="changeAnalyticsPeriod()">
+
+
+                        <option
+                            value="all"
+                            {% if selected_period == "all" %}
+                                selected
+                            {% endif %}>
+
+                            All Time
+
+                        </option>
+
+
+                        <option
+                            value="this_month"
+                            {% if selected_period == "this_month" %}
+                                selected
+                            {% endif %}>
+
+                            This Month
+
+                        </option>
+
+
+                        <option
+                            value="last_month"
+                            {% if selected_period == "last_month" %}
+                                selected
+                            {% endif %}>
+
+                            Last Month
+
+                        </option>
+
+
+                        <option
+                            value="6_months"
+                            {% if selected_period == "6_months" %}
+                                selected
+                            {% endif %}>
+
+                            Last 6 Months
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+                <!-- CHART -->
+
+                <div class="chart-container">
+
+                    <canvas id="incomeExpenseChart"></canvas>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 ACCOUNT SUMMARY
+            ================================================== -->
+
+            <div class="panel summary-panel">
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <p class="panel-label">
+                            Account
+                        </p>
+
+                        <h2>
+                            Financial Summary
+                        </h2>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="summary-content">
+
+
+                    <!-- CURRENT BALANCE -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Current Balance
+                        </span>
+
+                        <strong>
+                            ₹{{ "{:,.2f}".format(account.balance or 0) }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- INCOME -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Total Income
+                        </span>
+
+                        <strong class="summary-income">
+                            +₹{{ "{:,.2f}".format(income or 0) }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- EXPENSES -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Total Expenses
+                        </span>
+
+                        <strong class="summary-expense">
+                            -₹{{ "{:,.2f}".format(expenses or 0) }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <!-- SAVINGS -->
+
+                    <div class="summary-row total">
+
+                        <span>
+                            Net Savings
+                        </span>
+
+                        <strong>
+                            ₹{{ "{:,.2f}".format(savings or 0) }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             MONTHLY ACTIVITY
+        ================================================== -->
+
+        <section class="panel monthly-panel">
+
+
+            <div class="panel-header">
+
+
+                <div>
+
+                    <p class="panel-label">
+                        Monthly Activity
+                    </p>
+
+                    <h2>
+                        Income & Expenses
+                    </h2>
+
+                </div>
+
+
+                <span class="transaction-count">
+
+                    {{ monthly_data|length }} months
+
+                </span>
+
+
+            </div>
+
+
+            <div class="monthly-list">
+
+
+                {% if monthly_data %}
+
+
+                    {% for month in monthly_data %}
+
+
+                    <div class="monthly-row">
+
+
+                        <!-- MONTH -->
+
+                        <div class="month-name">
+
+                            <strong>
+                                {{ month.month }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- INCOME -->
+
+                        <div class="monthly-income">
+
+                            <span>
+                                Income
+                            </span>
+
+                            <strong>
+
+                                +₹{{ "{:,.2f}".format(
+                                    month.income or 0
+                                ) }}
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- EXPENSE -->
+
+                        <div class="monthly-expense">
+
+                            <span>
+                                Expenses
+                            </span>
+
+                            <strong>
+
+                                -₹{{ "{:,.2f}".format(
+                                    month.expenses or 0
+                                ) }}
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- NET -->
+
+                        <div class="monthly-net">
+
+                            <span>
+                                Net
+                            </span>
+
+                            <strong>
+
+                                ₹{{ "{:,.2f}".format(
+                                    (month.income or 0) -
+                                    (month.expenses or 0)
+                                ) }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <!-- EMPTY STATE -->
+
+                    <div class="empty-state">
+
+                        <div>
+                            ◔
+                        </div>
+
+                        <strong>
+                            No monthly data yet
+                        </strong>
+
+                        <p>
+                            Your financial activity will
+                            appear here once transactions
+                            are recorded.
+                        </p>
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             RECENT TRANSACTIONS
+        ================================================== -->
+
+        <section class="panel transactions-panel">
+
+
+            <div class="panel-header">
+
+
+                <div>
+
+                    <p class="panel-label">
+                        Activity
+                    </p>
+
+                    <h2>
+                        Recent Transactions
+                    </h2>
+
+                </div>
+
+
+                <a href="/transactions"
+                   class="view-all">
+
+                    View All →
+
+                </a>
+
+
+            </div>
+
+
+            {% if recent_transactions %}
+
+
+                {% for transaction in recent_transactions %}
+
+
+                <div class="transaction">
+
+
+                    <div class="transaction-left">
+
+
+                        <div class="transaction-icon
+                            {% if transaction.transaction_type == 'credit' %}
+                                salary
+                            {% else %}
+                                amazon
+                            {% endif %}
+                        ">
+
+
+                            {% if transaction.transaction_type == 'credit' %}
+
+                                ₹
+
+                            {% else %}
+
+                                ↗
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        <div>
+
+
+                            <strong>
+                                {{ transaction.description }}
+                            </strong>
+
+
+                            <small>
+
+
+                                {% if transaction.transaction_type == 'credit' %}
+
+                                    Money Received
+
+                                {% else %}
+
+                                    Money Sent
+
+                                {% endif %}
+
+
+                                •
+
+
+                                {{ transaction.transaction_date.strftime(
+                                    '%d %b %Y, %I:%M %p'
+                                ) }}
+
+
+                            </small>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <strong
+                        class="amount
+                        {% if transaction.transaction_type == 'credit' %}
+                            income
+                        {% else %}
+                            expense
+                        {% endif %}
+                        ">
+
+
+                        {% if transaction.transaction_type == 'credit' %}
+
+                            +₹{{ "{:,.2f}".format(
+                                transaction.amount
+                            ) }}
+
+                        {% else %}
+
+                            -₹{{ "{:,.2f}".format(
+                                transaction.amount
+                            ) }}
+
+                        {% endif %}
+
+
+                    </strong>
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <!-- EMPTY TRANSACTIONS -->
+
+                <div class="empty-state">
+
+
+                    <div>
+                        ↔
+                    </div>
+
+
+                    <strong>
+                        No transactions yet
+                    </strong>
+
+
+                    <p>
+                        Your transaction activity will
+                        appear here.
+                    </p>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =========================================================
+     ANALYTICS JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    /* =====================================================
+       PERIOD FILTER
+    ===================================================== */
+
+    function changeAnalyticsPeriod() {
+
+        const selector =
+            document.getElementById("periodSelector");
+
+        if (!selector) {
+            return;
+        }
+
+        const period = selector.value;
+
+        window.location.href =
+            "/analytics?period=" +
+            encodeURIComponent(period);
+
+    }
+
+
+    /* =====================================================
+       MONTHLY DATA FROM FLASK
+    ===================================================== */
+
+    const monthlyData =
+        {{ monthly_data | tojson }};
+
+
+    /* =====================================================
+       CHART DATA
+    ===================================================== */
+
+    const labels =
+        monthlyData.map(
+            item => item.month
+        );
+
+
+    const incomeData =
+        monthlyData.map(
+            item => Number(
+                item.income || 0
+            )
+        );
+
+
+    const expenseData =
+        monthlyData.map(
+            item => Number(
+                item.expenses || 0
+            )
+        );
+
+
+    /* =====================================================
+       GET CHART CANVAS
+    ===================================================== */
+
+    const chartCanvas =
+        document.getElementById(
+            "incomeExpenseChart"
+        );
+
+
+    /* =====================================================
+       CREATE CHART
+    ===================================================== */
+
+    if (
+        chartCanvas &&
+        typeof Chart !== "undefined"
+    ) {
+
+        new Chart(
+            chartCanvas,
+            {
+
+                type: "line",
+
+                data: {
+
+                    labels: labels,
+
+                    datasets: [
+
+                        /* ==============================
+                           INCOME
+                        ============================== */
+
+                        {
+
+                            label: "Income",
+
+                            data: incomeData,
+
+                            borderWidth: 3,
+
+                            tension: 0.4,
+
+                            fill: false,
+
+                            pointRadius: 4,
+
+                            pointHoverRadius: 7,
+
+                            borderColor: "#ff6b00",
+
+                            backgroundColor: "#ff6b00"
+
+                        },
+
+
+                        /* ==============================
+                           EXPENSES
+                        ============================== */
+
+                        {
+
+                            label: "Expenses",
+
+                            data: expenseData,
+
+                            borderWidth: 3,
+
+                            tension: 0.4,
+
+                            fill: false,
+
+                            pointRadius: 4,
+
+                            pointHoverRadius: 7,
+
+                            borderColor: "#111111",
+
+                            backgroundColor: "#ffffff"
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+
+                    interaction: {
+
+                        intersect: false,
+
+                        mode: "index"
+
+                    },
+
+
+                    plugins: {
+
+                        legend: {
+
+                            position: "top",
+
+                            align: "end"
+
+                        },
+
+
+                        tooltip: {
+
+                            callbacks: {
+
+                                label:
+                                    function(context) {
+
+                                        return (
+
+                                            context.dataset.label +
+
+                                            ": ₹" +
+
+                                            Number(
+                                                context.raw || 0
+                                            ).toLocaleString(
+                                                "en-IN",
+                                                {
+                                                    minimumFractionDigits: 2,
+
+                                                    maximumFractionDigits: 2
+                                                }
+                                            )
+
+                                        );
+
+                                    }
+
+                            }
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        x: {
+
+                            grid: {
+
+                                display: false
+
+                            }
+
+                        },
+
+
+                        y: {
+
+                            beginAtZero: true,
+
+
+                            grid: {
+
+                                color: "#292929"
+
+                            },
+
+
+                            ticks: {
+
+                                color: "#888888",
+
+                                callback:
+                                    function(value) {
+
+                                        return (
+
+                                            "₹" +
+
+                                            Number(value)
+                                                .toLocaleString(
+                                                    "en-IN"
+                                                )
+
+                                        );
+
+                                    }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

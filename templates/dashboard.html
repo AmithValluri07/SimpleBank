@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SimpleBank Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                S
+            </span>
+
+            <span>
+                Simple<span>Bank</span>
+            </span>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-item active">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="{{ url_for('cards') }}"
+               class="nav-item">
+
+                <span>▣</span>
+
+                My Cards
+
+            </a>
+
+
+            <a href="{{ url_for('transfer') }}"
+               class="nav-item">
+
+                <span>↗</span>
+
+                Transfers
+
+            </a>
+
+
+            <a href="{{ url_for('transactions') }}"
+               class="nav-item">
+
+                <span>↔</span>
+
+                Transactions
+
+            </a>
+
+
+            <a href="{{ url_for('analytics') }}"
+               class="nav-item">
+
+                <span>◔</span>
+
+                Analytics
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/settings"
+               class="nav-item">
+
+                <span>⚙</span>
+
+                Settings
+
+            </a>
+
+
+            <a href="{{ url_for('logout') }}"
+               class="nav-item logout">
+
+                <span>↪</span>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome-small">
+                    Good morning
+                </p>
+
+                <h1>
+                    Welcome back, {{ user_name }} 👋
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <button
+                    class="notification"
+                    id="notificationButton">
+
+                    ♢
+
+                    <span></span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+
+                        {{ user_name[0]|upper }}
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user_name }}
+                        </strong>
+
+                        <small>
+                            {{ user_email }}
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             BALANCE SECTION
+        ================================================== -->
+
+        <section class="balance-section">
+
+
+            <div class="balance-card">
+
+
+                <div class="balance-top">
+
+                    <div>
+
+                        <p>
+                            Total Balance
+                        </p>
+
+                        <h2 id="dashboardBalance">
+
+                            ₹{{ "{:,.2f}".format(account.balance) }}
+
+                        </h2>
+
+                    </div>
+
+
+                    <div class="balance-menu">
+                        •••
+                    </div>
+
+                </div>
+
+
+                <div class="balance-bottom">
+
+
+                    <div>
+
+                        <span>
+                            Account Number
+                        </span>
+
+                        <strong>
+                            •••• {{ account.account_number[-4:] }}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Available Balance
+                        </span>
+
+                        <strong id="availableBalance">
+
+                            ₹{{ "{:,.2f}".format(account.balance) }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ADD MONEY
+            ================================================== -->
+
+            <button
+                class="add-money"
+                id="addMoneyButton"
+                type="button">
+
+                <span>
+                    +
+                </span>
+
+                Add Money
+
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats">
+
+
+            <!-- =================================================
+                 TOTAL INCOME
+            ================================================== -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon income-icon">
+                    ↗
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Total Income
+                    </p>
+
+                    <h3 id="incomeValue">
+
+                        ₹{{ "{:,.2f}".format(income) }}
+
+                    </h3>
+
+                    <small class="positive">
+                        Money received
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TOTAL EXPENSES
+            ================================================== -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon expense-icon">
+                    ↘
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Total Expenses
+                    </p>
+
+                    <h3 id="expenseValue">
+
+                        ₹{{ "{:,.2f}".format(expenses) }}
+
+                    </h3>
+
+                    <small class="negative">
+                        Money spent
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TOTAL SAVINGS
+            ================================================== -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon savings-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Total Savings
+                    </p>
+
+                    <h3 id="savingsValue">
+
+                        ₹{{ "{:,.2f}".format(savings) }}
+
+                    </h3>
+
+
+                    {% if savings >= 0 %}
+
+                        <small class="positive">
+                            Positive balance flow
+                        </small>
+
+                    {% else %}
+
+                        <small class="negative">
+                            Negative balance flow
+                        </small>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DASHBOARD GRID
+        ================================================== -->
+
+        <section class="dashboard-grid">
+
+
+
+            <!-- =================================================
+                 FINANCIAL OVERVIEW
+            ================================================== -->
+
+            <div class="panel spending-panel">
+
+
+                <!-- PANEL HEADER -->
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <p class="panel-label">
+                            Financial Overview
+                        </p>
+
+                        <h2>
+                            Income vs Expenses
+                        </h2>
+
+                    </div>
+
+
+                    <select id="periodSelect">
+
+                        <option value="this_month">
+                            This Month
+                        </option>
+
+                        <option value="last_month">
+                            Last Month
+                        </option>
+
+                        <option value="6_months">
+                            Last 6 Months
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SAMPLE BAR CHART
+                ================================================== -->
+
+                <div class="chart-container">
+
+
+                    <div class="sample-chart">
+
+
+                        <!-- Y AXIS -->
+
+                        <div class="chart-y-axis">
+
+                            <span>
+                                ₹50K
+                            </span>
+
+                            <span>
+                                ₹40K
+                            </span>
+
+                            <span>
+                                ₹30K
+                            </span>
+
+                            <span>
+                                ₹20K
+                            </span>
+
+                            <span>
+                                ₹10K
+                            </span>
+
+                            <span>
+                                ₹0
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- CHART AREA -->
+
+                        <div class="chart-area">
+
+
+                            <!-- GRID LINES -->
+
+                            <div class="chart-grid-line"></div>
+
+                            <div class="chart-grid-line"></div>
+
+                            <div class="chart-grid-line"></div>
+
+                            <div class="chart-grid-line"></div>
+
+                            <div class="chart-grid-line"></div>
+
+
+
+                            <!-- BAR GROUPS -->
+
+                            <div class="bar-groups">
+
+
+
+                                <!-- JANUARY -->
+
+                                <div class="bar-group">
+
+                                    <div class="bars">
+
+                                        <div
+                                            class="bar income-bar"
+                                            style="height: 72%;">
+                                        </div>
+
+                                        <div
+                                            class="bar expense-bar"
+                                            style="height: 42%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span>
+                                        Jan
+                                    </span>
+
+                                </div>
+
+
+
+                                <!-- FEBRUARY -->
+
+                                <div class="bar-group">
+
+                                    <div class="bars">
+
+                                        <div
+                                            class="bar income-bar"
+                                            style="height: 58%;">
+                                        </div>
+
+                                        <div
+                                            class="bar expense-bar"
+                                            style="height: 35%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span>
+                                        Feb
+                                    </span>
+
+                                </div>
+
+
+
+                                <!-- MARCH -->
+
+                                <div class="bar-group">
+
+                                    <div class="bars">
+
+                                        <div
+                                            class="bar income-bar"
+                                            style="height: 82%;">
+                                        </div>
+
+                                        <div
+                                            class="bar expense-bar"
+                                            style="height: 48%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span>
+                                        Mar
+                                    </span>
+
+                                </div>
+
+
+
+                                <!-- APRIL -->
+
+                                <div class="bar-group">
+
+                                    <div class="bars">
+
+                                        <div
+                                            class="bar income-bar"
+                                            style="height: 65%;">
+                                        </div>
+
+                                        <div
+                                            class="bar expense-bar"
+                                            style="height: 52%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span>
+                                        Apr
+                                    </span>
+
+                                </div>
+
+
+
+                                <!-- MAY -->
+
+                                <div class="bar-group">
+
+                                    <div class="bars">
+
+                                        <div
+                                            class="bar income-bar"
+                                            style="height: 90%;">
+                                        </div>
+
+                                        <div
+                                            class="bar expense-bar"
+                                            style="height: 55%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span>
+                                        May
+                                    </span>
+
+                                </div>
+
+
+
+                                <!-- JUNE -->
+
+                                <div class="bar-group">
+
+                                    <div class="bars">
+
+                                        <div
+                                            class="bar income-bar"
+                                            style="height: 76%;">
+                                        </div>
+
+                                        <div
+                                            class="bar expense-bar"
+                                            style="height: 46%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span>
+                                        Jun
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         CHART LEGEND
+                    ================================================== -->
+
+                    <div class="chart-legend">
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-dot income-dot"></span>
+
+                            Income
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-dot expense-dot"></span>
+
+                            Expenses
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DEBIT CARD
+            ================================================== -->
+
+            <div class="panel bank-card-panel">
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <p class="panel-label">
+                            Your Card
+                        </p>
+
+                        <h2>
+                            My Debit Card
+                        </h2>
+
+                    </div>
+
+
+                    <span class="card-status">
+                        Active
+                    </span>
+
+                </div>
+
+
+
+                <div class="bank-card">
+
+
+                    <div class="card-top">
+
+                        <strong>
+                            SimpleBank
+                        </strong>
+
+                        <span>
+                            VISA
+                        </span>
+
+                    </div>
+
+
+                    <div class="chip"></div>
+
+
+                    <div class="card-number">
+
+                        •••• &nbsp;
+                        •••• &nbsp;
+                        •••• &nbsp;
+                        {{ account.account_number[-4:] }}
+
+                    </div>
+
+
+                    <div class="card-bottom">
+
+
+                        <div>
+
+                            <small>
+                                VALID THRU
+                            </small>
+
+                            <strong>
+                                08/29
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                CARD HOLDER
+                            </small>
+
+                            <strong>
+                                {{ user_name|upper }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECENT TRANSACTIONS
+        ================================================== -->
+
+        <section class="transactions-panel">
+
+
+            <div class="panel-header">
+
+
+                <div>
+
+                    <p class="panel-label">
+                        Activity
+                    </p>
+
+                    <h2>
+                        Recent Transactions
+                    </h2>
+
+                </div>
+
+
+                <a href="{{ url_for('transactions') }}">
+                    View All →
+                </a>
+
+            </div>
+
+
+
+            {% if transactions %}
+
+
+                {% for transaction in transactions %}
+
+
+                <div class="transaction">
+
+
+                    <div class="transaction-left">
+
+
+                        <div class="transaction-icon
+                            {% if transaction.transaction_type == 'credit' %}
+                                salary
+                            {% else %}
+                                amazon
+                            {% endif %}
+                        ">
+
+
+                            {% if transaction.transaction_type == 'credit' %}
+
+                                ₹
+
+                            {% else %}
+
+                                ↗
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        <div>
+
+
+                            <strong>
+                                {{ transaction.description }}
+                            </strong>
+
+
+                            <small>
+
+
+                                {% if transaction.transaction_type == 'credit' %}
+
+                                    Money Received
+
+                                {% else %}
+
+                                    Money Sent
+
+                                {% endif %}
+
+                                •
+
+                                {{ transaction.transaction_date.strftime('%d %b %Y, %I:%M %p') }}
+
+
+                            </small>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <strong
+                        class="amount
+                        {% if transaction.transaction_type == 'credit' %}
+                            income
+                        {% else %}
+                            expense
+                        {% endif %}
+                        ">
+
+
+                        {% if transaction.transaction_type == 'credit' %}
+
+                            +₹{{ "{:,.2f}".format(transaction.amount) }}
+
+                        {% else %}
+
+                            -₹{{ "{:,.2f}".format(transaction.amount) }}
+
+                        {% endif %}
+
+
+                    </strong>
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <div class="transaction">
+
+
+                    <div class="transaction-left">
+
+
+                        <div class="transaction-icon">
+                            —
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                No transactions yet
+                            </strong>
+
+                            <small>
+                                Your recent activity will appear here.
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     ADD MONEY MODAL
+========================================================= -->
+
+<div
+    class="add-money-modal"
+    id="addMoneyModal"
+    style="display: none;">
+
+
+    <div
+        class="add-money-overlay"
+        id="addMoneyOverlay">
+    </div>
+
+
+
+    <div class="add-money-box">
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="close-add-money"
+            id="closeAddMoney">
+
+            ×
+
+        </button>
+
+
+
+        <!-- HEADER -->
+
+        <div class="add-money-header">
+
+
+            <div class="add-money-icon">
+                +
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Add Money
+                </h2>
+
+                <p>
+                    Add money to your SimpleBank account
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <form id="addMoneyForm">
+
+
+            <!-- AMOUNT -->
+
+            <label for="addMoneyAmount">
+                Amount
+            </label>
+
+
+            <div class="amount-input">
+
+
+                <span>
+                    ₹
+                </span>
+
+
+                <input
+                    type="number"
+                    id="addMoneyAmount"
+                    name="amount"
+                    min="1"
+                    max="1000000"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required>
+
+
+            </div>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <label for="addMoneyDescription">
+                Description
+            </label>
+
+
+            <input
+                type="text"
+                id="addMoneyDescription"
+                name="description"
+                placeholder="Example: Salary, Cash deposit">
+
+
+
+            <!-- QUICK AMOUNTS -->
+
+            <div class="quick-amounts">
+
+
+                <button
+                    type="button"
+                    data-amount="5000">
+
+                    ₹5,000
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-amount="10000">
+
+                    ₹10,000
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-amount="25000">
+
+                    ₹25,000
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-amount="50000">
+
+                    ₹50,000
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- CONFIRM -->
+
+            <button
+                type="submit"
+                class="confirm-add-money"
+                id="confirmAddMoney">
+
+                Add Money
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}">
+</script>
+
+
+</body>
+
+</html>

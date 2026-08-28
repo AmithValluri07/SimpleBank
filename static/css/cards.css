@@ -1,0 +1,1198 @@
+/* =========================================================
+   SIMPLEBANK - MY CARDS
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f6f6f6;
+    color: #111111;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.cards-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+
+    background: #111111;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    padding: 0 12px;
+}
+
+
+.logo > span:last-child > span {
+    color: #ff6b00;
+}
+
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+
+    background: #ff6b00;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+    font-weight: 800;
+}
+
+
+.navigation {
+    margin-top: 55px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.nav-item {
+    text-decoration: none;
+    color: #a9a9a9;
+
+    padding: 14px 15px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    font-size: 14px;
+
+    transition: 0.25s;
+}
+
+
+.nav-item span {
+    width: 22px;
+
+    font-size: 18px;
+
+    text-align: center;
+}
+
+
+.nav-item:hover {
+    background: #1f1f1f;
+    color: white;
+}
+
+
+.nav-item.active {
+    background: #ff6b00;
+    color: white;
+}
+
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.nav-item.logout:hover {
+    background: #2a1710;
+    color: #ff6b00;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    padding: 35px 45px 60px;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 40px;
+}
+
+
+.welcome-small {
+    color: #888;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+
+.topbar h1 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+}
+
+
+.notification {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #e5e5e5;
+
+    background: white;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    position: relative;
+}
+
+
+.notification span {
+    width: 7px;
+    height: 7px;
+
+    background: #ff6b00;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 9px;
+    right: 9px;
+}
+
+
+.profile {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.profile-avatar {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #111;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+}
+
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.profile-info strong {
+    font-size: 14px;
+}
+
+
+.profile-info small {
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.page-intro {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 30px 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+
+    border: 1px solid #eeeeee;
+}
+
+
+.section-label {
+    color: #ff6b00;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+
+    margin-bottom: 8px;
+}
+
+
+.page-intro h2 {
+    font-size: 26px;
+
+    margin-bottom: 7px;
+}
+
+
+.page-intro p:last-child {
+    color: #888;
+
+    font-size: 14px;
+}
+
+
+.add-card-button {
+    border: none;
+
+    background: #ff6b00;
+
+    color: white;
+
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: 0.25s;
+}
+
+
+.add-card-button:hover {
+    background: #e85d00;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CARD LAYOUT
+========================================================= */
+
+.cards-layout {
+    display: grid;
+
+    grid-template-columns: 1.35fr 0.8fr;
+
+    gap: 28px;
+
+    align-items: start;
+}
+
+
+.card-section {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    border: 1px solid #eeeeee;
+}
+
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.section-heading p {
+    color: #999;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 7px;
+}
+
+
+.section-heading h2 {
+    font-size: 21px;
+}
+
+
+.active-badge {
+    color: #15803d;
+
+    background: #ecfdf3;
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BANK CARD
+========================================================= */
+
+.bank-card {
+    height: 310px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #181818 0%,
+            #0d0d0d 55%,
+            #252525 100%
+        );
+
+    color: white;
+
+    padding: 32px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+
+.bank-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 107, 0, 0.25);
+
+    right: -100px;
+    bottom: -120px;
+}
+
+
+.card-glow {
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    background: #ff6b00;
+
+    opacity: 0.12;
+
+    filter: blur(70px);
+
+    right: -30px;
+    top: -40px;
+}
+
+
+.card-top {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.card-top strong {
+    font-size: 19px;
+}
+
+
+.card-top span {
+    color: #ff6b00;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    font-style: italic;
+}
+
+
+.chip {
+    width: 52px;
+    height: 39px;
+
+    background: linear-gradient(
+        135deg,
+        #e4a84d,
+        #f5d28a
+    );
+
+    border-radius: 8px;
+
+    margin-top: 40px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.chip span {
+    position: absolute;
+
+    width: 100%;
+    height: 1px;
+
+    background: rgba(100, 70, 20, 0.4);
+
+    top: 50%;
+}
+
+
+.contactless {
+    position: absolute;
+
+    top: 105px;
+    left: 98px;
+
+    transform: rotate(90deg);
+
+    color: #ddd;
+
+    font-size: 16px;
+
+    letter-spacing: -5px;
+}
+
+
+.card-number {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 37px;
+
+    font-size: 23px;
+
+    letter-spacing: 2px;
+
+    font-weight: 500;
+}
+
+
+.card-bottom {
+    position: absolute;
+
+    left: 32px;
+    right: 32px;
+
+    bottom: 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    z-index: 2;
+}
+
+
+.card-bottom div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.card-bottom small {
+    color: #999;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+.card-bottom strong {
+    font-size: 12px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.card-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+.card-action {
+    flex: 1;
+
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    color: #222;
+
+    transition: 0.2s;
+}
+
+
+.card-action:hover {
+    border-color: #ff6b00;
+
+    color: #ff6b00;
+}
+
+
+.card-action span {
+    margin-right: 6px;
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.card-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.info-card {
+    background: white;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 18px;
+
+    padding: 23px;
+}
+
+
+.balance-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+}
+
+
+.info-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 14px;
+
+    background: #fff1e8;
+
+    color: #ff6b00;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+    font-size: 20px;
+}
+
+
+.balance-card p {
+    color: #999;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+
+.balance-card h2 {
+    font-size: 24px;
+}
+
+
+.info-card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+}
+
+
+.info-card-header > span:first-child {
+    color: #999;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    font-weight: 700;
+}
+
+
+.verified {
+    color: #15803d;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.info-card h3 {
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+
+.info-card > small {
+    color: #999;
+
+    font-size: 11px;
+}
+
+
+.security-card {
+    display: flex;
+
+    gap: 15px;
+}
+
+
+.security-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    background: #ecfdf3;
+
+    color: #15803d;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+}
+
+
+.security-card p {
+    color: #888;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.settings-card p {
+    color: #999;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+
+    background: #22c55e;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.benefits-section {
+    margin-top: 30px;
+}
+
+
+.benefits-section > .section-heading {
+    margin-bottom: 18px;
+}
+
+
+.benefits-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.benefit-card {
+    background: white;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 17px;
+
+    padding: 23px;
+
+    transition: 0.25s;
+}
+
+
+.benefit-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+}
+
+
+.benefit-icon {
+    width: 42px;
+    height: 42px;
+
+    background: #fff1e8;
+
+    color: #ff6b00;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+    margin-bottom: 16px;
+}
+
+
+.benefit-card h3 {
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+
+.benefit-card p {
+    color: #888;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .cards-layout {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+
+        width: calc(100% - 210px);
+
+        padding: 25px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 20px;
+    }
+
+    .page-intro {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .topbar h1 {
+        font-size: 23px;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .bank-card {
+        height: 260px;
+
+        padding: 24px;
+    }
+
+    .card-number {
+        font-size: 17px;
+    }
+
+}
+/* =========================================================
+   ADD CARD MODAL FORM
+========================================================= */
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+
+.modal-form label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+    margin-top: 8px;
+}
+
+
+.modal-form input,
+.modal-form select {
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.modal-form input:focus,
+.modal-form select:focus {
+
+    border-color: #f97316;
+
+    box-shadow:
+        0 0 0 3px rgba(249, 115, 22, 0.12);
+
+}
+
+
+.modal-form button {
+
+    margin-top: 18px;
+
+    width: 100%;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+.modal-form button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =========================================================
+   MODAL SHOW STATE
+========================================================= */
+
+.card-modal.show {
+
+    display: flex;
+
+}
+
+
+.card-modal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0, 0, 0, 0.55);
+
+    padding: 20px;
+
+}
+
+
+.card-modal .modal-content {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #fff;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    position: relative;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+
+    animation:
+        modalAppear 0.2s ease;
+
+}
+
+
+@keyframes modalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+.modal-close {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    background: #f5f5f5;
+
+    border-radius: 50%;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    color: #555;
+
+}
+
+
+.modal-close:hover {
+
+    background: #eee;
+
+}

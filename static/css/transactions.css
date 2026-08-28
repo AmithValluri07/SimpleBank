@@ -1,0 +1,492 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f8fa;
+    color: #171717;
+}
+
+
+.transactions-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 250px;
+    background: #111111;
+    color: white;
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    padding-left: 10px;
+}
+
+
+.logo > span:last-child span {
+    color: #f97316;
+}
+
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #f97316;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.nav-item {
+    color: #a8a8a8;
+    text-decoration: none;
+    padding: 14px 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+
+.nav-item:hover {
+    background: #222222;
+    color: white;
+}
+
+
+.nav-item.active {
+    background: #f97316;
+    color: white;
+}
+
+
+.sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 35px 45px;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+
+.welcome-small {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+
+.topbar h1 {
+    font-size: 30px;
+}
+
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.profile-avatar {
+    width: 43px;
+    height: 43px;
+    background: #f97316;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.profile-info small {
+    color: #888;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.page-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+
+.section-label {
+    color: #f97316;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+
+.page-intro h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+
+.page-intro p:last-child {
+    color: #777;
+}
+
+
+.balance-box {
+    background: white;
+    border-radius: 14px;
+    padding: 18px 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+
+.balance-box span {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+
+.balance-box strong {
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+
+.search-box {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 11px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 14px;
+    width: 100%;
+    font-size: 14px;
+}
+
+
+.filter-section select {
+    border: 1px solid #e5e5e5;
+    border-radius: 11px;
+    padding: 0 18px;
+    background: white;
+    outline: none;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TRANSACTIONS CARD
+========================================================= */
+
+.transactions-card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+
+.transactions-header {
+    margin-bottom: 15px;
+}
+
+
+.transactions-header p {
+    color: #f97316;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+
+
+.transactions-header h2 {
+    font-size: 22px;
+}
+
+
+/* =========================================================
+   TRANSACTION ROW
+========================================================= */
+
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 5px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.transaction-row:last-child {
+    border-bottom: none;
+}
+
+
+.transaction-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.transaction-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+
+.transaction-icon.credit {
+    background: #ecfdf3;
+    color: #16a34a;
+}
+
+
+.transaction-icon.debit {
+    background: #fff1eb;
+    color: #f97316;
+}
+
+
+.transaction-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.transaction-details strong {
+    font-size: 14px;
+}
+
+
+.transaction-details small {
+    color: #888;
+    font-size: 12px;
+}
+
+
+.transaction-amount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+
+.transaction-amount strong {
+    font-size: 15px;
+}
+
+
+.transaction-amount small {
+    color: #999;
+    font-size: 11px;
+}
+
+
+.credit-text {
+    color: #16a34a;
+}
+
+
+.debit-text {
+    color: #f97316;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+
+.empty-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff1eb;
+    color: #f97316;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 18px;
+    font-size: 25px;
+}
+
+
+.empty-state h3 {
+    margin-bottom: 8px;
+}
+
+
+.empty-state p {
+    color: #888;
+    margin-bottom: 18px;
+}
+
+
+.empty-state a {
+    color: #f97316;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+        padding: 25px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .page-intro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .filter-section {
+        flex-direction: column;
+    }
+
+    .filter-section select {
+        height: 45px;
+    }
+
+    .transaction-row {
+        gap: 15px;
+    }
+
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SimpleBank - Transactions</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/transactions.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="transactions-page">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                S
+            </span>
+
+            <span>
+                Simple<span>Bank</span>
+            </span>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <a href="/dashboard"
+               class="nav-item">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/cards"
+               class="nav-item">
+
+                <span>▣</span>
+
+                My Cards
+
+            </a>
+
+
+            <a href="/transfer"
+               class="nav-item">
+
+                <span>↗</span>
+
+                Transfers
+
+            </a>
+
+
+            <a href="/transactions"
+               class="nav-item active">
+
+                <span>↔</span>
+
+                Transactions
+
+            </a>
+
+
+            <a href="/analytics"
+               class="nav-item">
+
+                <span>◔</span>
+
+                Analytics
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/settings"
+               class="nav-item">
+
+                <span>⚙</span>
+
+                Settings
+
+            </a>
+
+
+            <a href="/logout"
+               class="nav-item logout">
+
+                <span>↪</span>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome-small">
+                    Banking
+                </p>
+
+                <h1>
+                    Transactions
+                </h1>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+
+                    {{ user_name[0]|upper }}
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong>
+                        {{ user_name }}
+                    </strong>
+
+                    <small>
+                        {{ user_email }}
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- PAGE INTRO -->
+
+        <section class="page-intro">
+
+            <div>
+
+                <p class="section-label">
+                    ACCOUNT ACTIVITY
+                </p>
+
+                <h2>
+                    Transaction History
+                </h2>
+
+                <p>
+                    View all your recent banking activity.
+                </p>
+
+            </div>
+
+
+            <div class="balance-box">
+
+                <span>
+                    AVAILABLE BALANCE
+                </span>
+
+                <strong>
+                    ₹{{ "{:,.2f}".format(account.balance) }}
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FILTERS -->
+
+        <section class="filter-section">
+
+            <div class="search-box">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="transactionSearch"
+                    placeholder="Search transactions..."
+                >
+
+            </div>
+
+
+            <select id="transactionFilter">
+
+                <option value="all">
+                    All Transactions
+                </option>
+
+                <option value="credit">
+                    Money Received
+                </option>
+
+                <option value="debit">
+                    Money Sent
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- TRANSACTIONS -->
+
+        <section class="transactions-card">
+
+
+            <div class="transactions-header">
+
+                <div>
+
+                    <p>
+                        ACTIVITY
+                    </p>
+
+                    <h2>
+                        All Transactions
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="transactionsList">
+
+
+                {% if transactions %}
+
+
+                    {% for transaction in transactions %}
+
+
+                    <div
+                        class="transaction-row"
+                        data-type="{{ transaction.transaction_type }}"
+                        data-description="{{ transaction.description|lower }}"
+                    >
+
+
+                        <!-- LEFT -->
+
+                        <div class="transaction-left">
+
+
+                            <div
+                                class="transaction-icon
+                                {% if transaction.transaction_type == 'credit' %}
+                                    credit
+                                {% else %}
+                                    debit
+                                {% endif %}
+                                "
+                            >
+
+                                {% if transaction.transaction_type == 'credit' %}
+
+                                    ↓
+
+                                {% else %}
+
+                                    ↑
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="transaction-details">
+
+                                <strong>
+                                    {{ transaction.description }}
+                                </strong>
+
+
+                                <small>
+
+                                    {% if transaction.transaction_type == 'credit' %}
+
+                                        Money Received
+
+                                    {% else %}
+
+                                        Money Sent
+
+                                    {% endif %}
+
+                                    •
+
+                                    {{ transaction.transaction_date.strftime('%d %b %Y, %I:%M %p') }}
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RIGHT -->
+
+                        <div class="transaction-amount">
+
+                            {% if transaction.transaction_type == 'credit' %}
+
+                                <strong class="credit-text">
+                                    +₹{{ "{:,.2f}".format(transaction.amount) }}
+                                </strong>
+
+                                <small>
+                                    Credit
+                                </small>
+
+                            {% else %}
+
+                                <strong class="debit-text">
+                                    -₹{{ "{:,.2f}".format(transaction.amount) }}
+                                </strong>
+
+                                <small>
+                                    Debit
+                                </small>
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <!-- EMPTY STATE -->
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ↔
+                        </div>
+
+                        <h3>
+                            No transactions yet
+                        </h3>
+
+                        <p>
+                            Your banking activity will appear here.
+                        </p>
+
+                        <a href="/transfer">
+                            Make a Transfer →
+                        </a>
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+            <!-- NO SEARCH RESULTS -->
+
+            <div
+                id="noResults"
+                class="empty-state hidden"
+            >
+
+                <div class="empty-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    No transactions found
+                </h3>
+
+                <p>
+                    Try another search or filter.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<script src="{{ url_for('static', filename='js/transactions.js') }}">
+</script>
+
+</body>
+
+</html>

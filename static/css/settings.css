@@ -1,0 +1,1418 @@
+/* =========================================================
+   SIMPLEBANK - SETTINGS
+   Orange / Black / White
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: #f6f6f6;
+
+    color: #111;
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.settings-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    width: 250px;
+
+    min-height: 100vh;
+
+    background: #0d0d0d;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    bottom: 0;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    margin-bottom: 45px;
+
+    padding-left: 10px;
+
+}
+
+
+.logo > span:last-child > span {
+
+    color: #ff6b00;
+
+}
+
+
+.logo-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #ff6b00;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.nav-item {
+
+    text-decoration: none;
+
+    color: #a7a7a7;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.nav-item span {
+
+    width: 21px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+}
+
+
+.nav-item:hover {
+
+    color: white;
+
+    background: #1b1b1b;
+
+    transform: translateX(2px);
+
+}
+
+
+.nav-item.active {
+
+    background: #ff6b00;
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px rgba(255, 107, 0, 0.18);
+
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+========================================================= */
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.nav-item.logout:hover {
+
+    background: #241515;
+
+    color: #ff7a45;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    padding: 30px 38px 50px;
+
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 32px;
+
+}
+
+
+.welcome-small {
+
+    color: #888;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.topbar h1 {
+
+    font-size: 30px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.7px;
+
+}
+
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+.notification {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: 1px solid #e4e4e4;
+
+    background: white;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 21px;
+
+    position: relative;
+
+    transition: 0.2s ease;
+
+}
+
+
+.notification:hover {
+
+    border-color: #ff6b00;
+
+    color: #ff6b00;
+
+}
+
+
+.notification span {
+
+    position: absolute;
+
+    top: 8px;
+
+    right: 9px;
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #ff6b00;
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.profile-avatar {
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #ff6b00;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+}
+
+
+.profile-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.profile-info strong {
+
+    font-size: 14px;
+
+}
+
+
+.profile-info small {
+
+    color: #888;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.settings-intro {
+
+    background: #111;
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 30px 34px;
+
+    margin-bottom: 25px;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.settings-intro::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 107, 0, 0.15);
+
+    right: -70px;
+
+    top: -100px;
+
+}
+
+
+.section-label {
+
+    color: #ff6b00;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.settings-intro h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.settings-intro p:last-child {
+
+    color: #aaa;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   SETTINGS LAYOUT
+========================================================= */
+
+.settings-layout {
+
+    display: grid;
+
+    grid-template-columns: 250px 1fr;
+
+    gap: 24px;
+
+    align-items: start;
+
+}
+
+
+/* =========================================================
+   SETTINGS MENU
+========================================================= */
+
+.settings-menu {
+
+    background: white;
+
+    border: 1px solid #e8e8e8;
+
+    border-radius: 16px;
+
+    padding: 10px;
+
+    position: sticky;
+
+    top: 25px;
+
+}
+
+
+.settings-menu-item {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-align: left;
+
+    padding: 13px 12px;
+
+    border-radius: 11px;
+
+    transition: 0.2s ease;
+
+}
+
+
+.settings-menu-item:hover {
+
+    background: #f7f7f7;
+
+}
+
+
+.settings-menu-item.active {
+
+    background: #fff1e8;
+
+}
+
+
+.menu-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 10px;
+
+    background: #f4f4f4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 17px;
+
+}
+
+
+.settings-menu-item.active .menu-icon {
+
+    background: #ff6b00;
+
+}
+
+
+.settings-menu-item span:last-child {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.settings-menu-item strong {
+
+    color: #222;
+
+    font-size: 13px;
+
+}
+
+
+.settings-menu-item small {
+
+    color: #999;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.settings-content {
+
+    min-width: 0;
+
+}
+
+
+.settings-section {
+
+    display: none;
+
+}
+
+
+.settings-section.active {
+
+    display: block;
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.settings-card {
+
+    background: white;
+
+    border: 1px solid #e7e7e7;
+
+    border-radius: 17px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.025);
+
+}
+
+
+.card-heading {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    padding-bottom: 24px;
+
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.heading-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 13px;
+
+    background: #fff0e7;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 21px;
+
+}
+
+
+.card-heading p {
+
+    color: #ff6b00;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.card-heading h2 {
+
+    font-size: 20px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.card-heading span {
+
+    color: #888;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+
+    min-height: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group label {
+
+    color: #333;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.form-group input {
+
+    width: 100%;
+
+    height: 46px;
+
+    border: 1px solid #dedede;
+
+    border-radius: 10px;
+
+    padding: 0 13px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    color: #222;
+
+    background: white;
+
+    transition: 0.2s ease;
+
+}
+
+
+.form-group input:focus {
+
+    border-color: #ff6b00;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 107, 0, 0.08);
+
+}
+
+
+.form-group input[readonly] {
+
+    background: #f5f5f5;
+
+    color: #888;
+
+    cursor: not-allowed;
+
+}
+
+
+.input-note {
+
+    color: #999;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-wrapper {
+
+    position: relative;
+
+}
+
+
+.password-wrapper input {
+
+    padding-right: 45px;
+
+}
+
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 8px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: #888;
+
+    font-size: 15px;
+
+}
+
+
+.password-toggle:hover {
+
+    color: #ff6b00;
+
+}
+
+
+/* =========================================================
+   PASSWORD REQUIREMENTS
+========================================================= */
+
+.password-requirements {
+
+    background: #fafafa;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 11px;
+
+    padding: 15px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.password-requirements strong {
+
+    font-size: 12px;
+
+}
+
+
+.password-requirements ul {
+
+    margin-top: 8px;
+
+    padding-left: 18px;
+
+}
+
+
+.password-requirements li {
+
+    color: #888;
+
+    font-size: 11px;
+
+    margin-bottom: 4px;
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.form-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 5px;
+
+}
+
+
+.primary-button {
+
+    border: none;
+
+    background: #ff6b00;
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 12px 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.primary-button:hover {
+
+    background: #e85e00;
+
+    transform: translateY(-1px);
+
+}
+
+
+.primary-button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* =========================================================
+   PREFERENCES
+========================================================= */
+
+.preference-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.preference-item {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.preference-item:first-child {
+
+    padding-top: 0;
+
+}
+
+
+.preference-item strong {
+
+    font-size: 13px;
+
+}
+
+
+.preference-item p {
+
+    color: #999;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.switch {
+
+    position: relative;
+
+    width: 46px;
+
+    height: 25px;
+
+    flex-shrink: 0;
+
+}
+
+
+.switch input {
+
+    opacity: 0;
+
+    width: 0;
+
+    height: 0;
+
+}
+
+
+.slider {
+
+    position: absolute;
+
+    cursor: pointer;
+
+    inset: 0;
+
+    background: #d4d4d4;
+
+    border-radius: 30px;
+
+    transition: 0.2s;
+
+}
+
+
+.slider::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 19px;
+
+    height: 19px;
+
+    left: 3px;
+
+    top: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: 0.2s;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+}
+
+
+.switch input:checked + .slider {
+
+    background: #ff6b00;
+
+}
+
+
+.switch input:checked + .slider::before {
+
+    transform: translateX(21px);
+
+}
+
+
+/* =========================================================
+   SAVE PREFERENCES
+========================================================= */
+
+.save-preferences {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 22px;
+
+}
+
+
+/* =========================================================
+   SECURITY NOTICE
+========================================================= */
+
+.security-notice {
+
+    margin-top: 25px;
+
+    padding: 17px;
+
+    border-radius: 12px;
+
+    background: #f7f7f7;
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+
+}
+
+
+.security-notice > span {
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: #e8f8ed;
+
+    color: #16a34a;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+
+}
+
+
+.security-notice strong {
+
+    font-size: 12px;
+
+}
+
+
+.security-notice p {
+
+    color: #888;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .settings-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .settings-menu {
+
+        position: static;
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .sidebar {
+
+        width: 72px;
+
+        padding: 20px 10px;
+
+    }
+
+
+    .logo {
+
+        justify-content: center;
+
+        padding: 0;
+
+    }
+
+
+    .logo > span:last-child {
+
+        display: none;
+
+    }
+
+
+    .nav-item {
+
+        justify-content: center;
+
+        padding: 13px 8px;
+
+    }
+
+
+    .nav-item {
+
+        font-size: 0;
+
+    }
+
+
+    .nav-item span {
+
+        font-size: 18px;
+
+    }
+
+
+    .main-content {
+
+        margin-left: 72px;
+
+        width: calc(100% - 72px);
+
+        padding: 25px 20px;
+
+    }
+
+
+    .topbar h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .profile-info {
+
+        display: none;
+
+    }
+
+
+}
+
+
+@media (max-width: 600px) {
+
+    .main-content {
+
+        padding: 20px 14px;
+
+    }
+
+
+    .topbar {
+
+        align-items: flex-start;
+
+    }
+
+
+    .topbar-right {
+
+        gap: 10px;
+
+    }
+
+
+    .settings-intro {
+
+        padding: 24px;
+
+    }
+
+
+    .settings-menu {
+
+        display: flex;
+
+        overflow-x: auto;
+
+        gap: 5px;
+
+    }
+
+
+    .settings-menu-item {
+
+        min-width: 160px;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+
+    .settings-card {
+
+        padding: 20px;
+
+    }
+
+
+    .form-actions,
+    .save-preferences {
+
+        justify-content: stretch;
+
+    }
+
+
+    .primary-button {
+
+        width: 100%;
+
+    }
+
+}
