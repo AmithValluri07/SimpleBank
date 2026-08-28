@@ -106,7 +106,7 @@ The application provides a modern banking dashboard where users can securely log
 
 ### 🔐 Login Page
 
-![Login Page](screenshots/login%20page.png)
+![Login Page](screenshots/Login%20page.png)
 
 ### 🏦 Dashboard
 
