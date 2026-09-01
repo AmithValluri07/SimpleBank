@@ -30,12 +30,12 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 # =========================================================
 
 def get_db_connection():
-
     return mysql.connector.connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME", "simplebank")
+        host=os.getenv("MYSQLHOST"),
+        port=int(os.getenv("MYSQLPORT", "3306")),
+        user=os.getenv("MYSQLUSER"),
+        password=os.getenv("MYSQLPASSWORD"),
+        database=os.getenv("MYSQLDATABASE")
     )
 
 
