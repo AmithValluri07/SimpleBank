@@ -3,3 +3,4 @@ Flask-CORS==6.0.5                 # Allows frontend ↔ backend communication
 mysql-connector-python==26.7.0    # Connects Flask to MySQL
 Werkzeug==3.1.8                   # Password hashing/security utilities
 python-dotenv==1.2.3              #load sensitive configuration values from a .env file into your Python application.
+gunicorn                          #Green unicorn production ready web server gateway interface http server designed to run py web applications.
